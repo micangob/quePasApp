@@ -5,14 +5,11 @@ import lombok.Getter;
 
 @Getter
 @Entity
-@Table(name="incidente")
-public class Incidente {
+@Table(name="establecimiento")
+public class Establecimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Dependiendo de la estrategia de generación de identificadores que estés utilizando
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "servicioAfectado_id")
-    private PrestacionDeServicio servicioAfectado;
-    private String descripcion;
+    private String nombre;
 
 }

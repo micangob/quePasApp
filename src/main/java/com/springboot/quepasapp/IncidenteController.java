@@ -15,19 +15,27 @@ public class IncidenteController {
 
     @RequestMapping
     public String helloWorld(){
-        return "asjgaklfjg";
+        return "/incidentes";
     }
-
 
 
     @Controller
     public class IncidentController {
 
+        private final IncidenteRepository incidenteRepository;
+
+        @Autowired
+        public IncidentController(IncidenteRepository incidenteRepository) {
+            this.incidenteRepository = incidenteRepository;
+        }
+
         @GetMapping("/incidentes")
         public String listIncidentes(Model model) {
-            List<Incidente> incidentes = new ArrayList<>();
+            // Obtener todos los incidentes utilizando la proyección
+            List<Incidente> incidentes = incidenteRepository.findAll();
+
             model.addAttribute("incidentes", incidentes);
-            return "incidentes";  // Return the Thymeleaf template
+            return "incidentes";  // Devuelve la plantilla Thymeleaf
         }
     }
 }
